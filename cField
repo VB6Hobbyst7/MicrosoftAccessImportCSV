@@ -1,0 +1,73 @@
+Option Compare Database
+
+Private pField2 As Field2
+Private pParentcTable As cTable
+Private pParentTableIndex As Integer 'index location in cTable.pvFields
+Private pName As String
+Private pvRelatesTo As Variant 'of cField
+Private DataType As Integer 'of e_Datatype
+Private vData As String 'of cData
+Private pNewCellIndex As Integer
+
+'Public Enum e_Datatype
+'0 Datatype_PrimaryID
+'1 Datatype_integer
+'2 Datatype_string
+'End Enum
+
+Public Sub InitializecField(oField As Field2)
+'Loads in all the data into the object
+    Set pField2 = oField
+    pName = pField2.Name
+End Sub
+
+Public Property Get Name() As String
+    Name = pName
+End Property
+
+Public Property Get vRelatesTo() As Variant
+    vRelatedTo = pvRelatedTo
+End Property
+
+Public Property Let vRelatesTo(vValue As Variant)
+    pvRelatedTo = vValue
+End Property
+
+Sub DetermineParent(oTable As cTable, Optional oField As Field2)
+'populates parent data information provided its parent table
+    
+    Dim x As Integer
+    Dim vTable As Variant 'of ctable
+    
+    'Error handling
+    If IsEmpty(pField2) Then
+        If IsEmpty(oField) Then
+            MsgBox "Error, no ofield or pfield"
+            Exit Sub
+        Else
+            Set pField2 = oField
+        End If
+    End If
+    
+    If IsEmpty(oTable) Then Exit Sub
+    
+    Set pParentcTable = cTable
+    vTable = oTable.vTable
+    
+    'Find index
+    For x = 0 To UBound(vTable)
+        If vTable(x) = pfield Then
+            pParentTableIndex = x
+            Exit Sub
+        End If
+        
+        If x = UBound(vTable) And pfield <> vTable(x) Then
+            MsgBox "DetermineParent field does not exist in table"
+        End If
+    Next x
+End Sub
+
+Sub GetFieldObjectFromName(sName As String)
+'Returns the field object based on the field name
+
+End Sub
