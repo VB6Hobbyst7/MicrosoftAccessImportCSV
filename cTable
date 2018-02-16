@@ -1,0 +1,64 @@
+Option Compare Database
+Option Explicit
+
+Private pDatabase As Database
+Private pTable As TableDef
+Private pName As String
+Private pvFields As Variant
+Private pvRelatesTo As Variant 'of cTables
+
+Public Property Get vRelatesTo() As Variant
+    vRelatesTo = pvRelatesTo
+End Property
+
+Public Property Let vRelatesTo(vValue)
+    pvRelatesTo = vValue
+End Property
+
+Public Property Get Table() As Variant
+    Table = pTable
+End Property
+
+Public Property Get Name() As Variant
+    Name = pName
+End Property
+
+Public Property Get vFields() As Variant
+    vFields = pvFields
+End Property
+
+Public Property Set Database(oDatabase As Database)
+'Loads in the database information provided its parent database
+    Set pDatabase = oDatabase
+End Property
+
+Public Sub InitializecTable(oTable As TableDef)
+'Loads in all the data into the object
+    Set pTable = oTable
+    pName = pTable.Name
+    SetFields
+End Sub
+
+Sub SetFields()
+'Sets the vFields array
+    Dim oField As Field
+    Dim vTemp As Variant
+    Dim i As Integer
+    
+    'Error handling
+    If pTable.Fields Is Nothing Then Exit Sub
+    
+    For Each oField In pTable.Fields
+        If IsEmpty(vTemp) Then
+            'create a new list
+            vTemp = Array(NewcField(oField))
+        Else
+            'append to the list
+            ReDim Preserve vTemp(0 To UBound(vTemp) + 1)
+            Set vTemp(UBound(vTemp)) = NewcField(oField)
+        End If
+        i = i + 1
+    Next oField
+    
+    pvFields = vTemp
+End Sub
