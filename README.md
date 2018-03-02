@@ -15,3 +15,10 @@ An intelligent CSV Import
 
 'Example 2: consider an import with three phone numbers and phone number type, the program should import each CSV row as three rows in your
 'databse
+
+
+'HOW TO USE:
+'Import all VBA files into Microsoft Access
+'Set the path variable to the directory pointing to your CSV file
+'run and follow the prompts as provided
+'DISCLAMER: I wouldn't be surprised if this is still pretty buggy. 
