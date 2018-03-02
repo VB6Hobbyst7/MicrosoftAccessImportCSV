@@ -21,4 +21,5 @@ An intelligent CSV Import
 'Import all VBA files into Microsoft Access
 'Set the path variable to the directory pointing to your CSV file
 'run and follow the prompts as provided
-'DISCLAMER: I wouldn't be surprised if this is still pretty buggy. 
+'DISCLAMER: I wouldn't be surprised if this is still pretty buggy
+'For example, you still need microsoft excel to clean up the CSV file free of ' and " in strings
